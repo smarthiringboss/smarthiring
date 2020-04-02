@@ -193,4 +193,5 @@ def fetch_geeks(cookie, mail) :
 
 
     print ("extract 结束，准备返回")
-    return {"result" : "pass", "logPath" : "../reports/" + logPath.split ("/") [ 3 ]}
+    returnString = {"result" : "pass", "logPath" : "../reports/" + logPath.split ("/") [ 3 ]}
+    return returnString
