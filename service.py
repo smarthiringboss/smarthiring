@@ -47,6 +47,7 @@ def goto_task(mail):
     # 默认打开debug选项
     returnString = fetch.fetch_geeks(request.json, mail)
     print("准备从goto_task返回")
+    print(returnString)
 
     return returnString, 201
 
