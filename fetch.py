@@ -175,5 +175,6 @@ def fetch_geeks(cookie, mail):
             return {"result":"fail","logPath":"../reports/" + logPath.split("/")[3]}
         extrat_geeks(result)
 
+    print("extract 结束，准备返回")
     return {"result":"pass","logPath":"../reports/" + logPath.split("/")[3]}
 
