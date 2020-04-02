@@ -44,6 +44,7 @@ def fetch_geeks(cookie, mail):
 
     cookie_dict = fetch.convert_cookie(cookie)
     for i in range(1,10):
+        time.sleep (10)
         result, logPath = fetch.get_geeks(cookie_dict,i)
         if "fail" == result:
             print("返回不正确，退出。。。")
