@@ -3,6 +3,7 @@ from flask import Flask, jsonify
 from flask import make_response
 from flask import request
 from flask_cors import cross_origin, CORS
+import json
 
 import tasks
 import generator
@@ -49,7 +50,7 @@ def goto_task(mail):
     print("准备从goto_task返回")
     print(returnString)
 
-    return returnString, 201
+    return jsonify(returnString), 201
 
 @app.route('/tasks/v1/save/<string:laneId>/<string:fileName>', methods=['POST'])
 @cross_origin()
