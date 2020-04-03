@@ -6,16 +6,17 @@ from datetime import datetime
 import time
 
 import fetch
+import mail
 
 db = pymysql.connect (host="localhost", user="smarthiring",
                           password="Startnewlife2008", db="smart_hiring", port=3306)
 
 
-def query_all_cookies():
+def query_valid_cookies():
     cookies = {
         "cookies" : [ ]
     }
-    sql = "select cookie,mail from cookies;"
+    sql = "select cookie,mail from cookies where valid=1;"
     try :
         cur = db.cursor ()
         cur.execute (sql)  # 执行sql语句
@@ -40,23 +41,34 @@ def query_all_cookies():
 
     return cookies
 
-def fetch_geeks(cookie, mail):
+
+def fetch_geeks(cookie, mail_address):
 
     cookie_dict = fetch.convert_cookie(cookie)
     for i in range(1,10):
+        # 调节每页查询间隔
         time.sleep (30)
+
         result, logPath = fetch.get_geeks(cookie_dict,i)
         if "fail" == result:
-            print("返回不正确，退出。。。")
-            # return {"result":"fail","logPath":"../reports/" + logPath.split("/")[3]}
+            print(mail_address+"的返回不正确，通知mail。。。")
+
+            # 把这个cookie无效掉
+            fetch.update_cookie (cookie, mail_address, 0)
+
+            # 发送mail通知
+            mail.send_mail ( \
+                       receiver=mail_address, mail_title='cookie已过期', \
+                       mail_content='')
+
             return
+
         fetch.extrat_geeks(result)
 
-    # return {"result":"pass","logPath":"../reports/" + logPath.split("/")[3]}
     return
 
 def job():
-    cookies = query_all_cookies()
+    cookies = query_valid_cookies()
     for cookie in cookies["cookies"]:
         fetch_geeks (cookie["cookie"], cookie["mail"])
 

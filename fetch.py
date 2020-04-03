@@ -142,14 +142,14 @@ def query_if_cookie_exist(mail) :
     return False
 
 
-def update_cookie(cookie, mail) :
+def update_cookie(cookie, mail, valid) :
     ifExist = query_if_cookie_exist (mail)
 
     # 插入
     if not ifExist :
         cur = db.cursor ()
 
-        sql_insert = """insert into cookies(mail, cookie) values('""" + mail + """','""" + cookie + """')"""
+        sql_insert = """insert into cookies(valid, mail, cookie) values(""" + str(valid) + """,'""" + mail + """','""" + cookie + """')"""
         try :
             cur.execute (sql_insert)
             # 提交
@@ -165,7 +165,7 @@ def update_cookie(cookie, mail) :
     else :
         cur = db.cursor ()
 
-        sql_insert = """update cookies set cookie='""" + cookie + """' where mail='""" + mail + """'"""
+        sql_insert = """update cookies set valid=""" + str(valid) + """,cookie='""" + cookie + """' where mail='""" + mail + """'"""
         try :
             cur.execute (sql_insert)
             # 提交
@@ -181,8 +181,8 @@ def update_cookie(cookie, mail) :
 
 def fetch_geeks(cookie, mail) :
     # 先保存再执行
-    update_cookie (cookie, mail)
-
+    update_cookie (cookie, mail, 1)
+    # return
     cookie_dict = convert_cookie (cookie)
     # for i in range(1,1):
     result, logPath = get_geeks (cookie_dict, 1)
