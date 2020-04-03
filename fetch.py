@@ -55,7 +55,7 @@ def get_geeks(cookie_dict, page) :
             return "fail", logfile.name
     elif "message" in geeks:
         if geeks["message"] == "Forbidden" :
-            print("boss return with Forbidden "
+            print("boss return with Forbidden ")
             print("the cookie is :"+cookie_dict)
             return "fail", logfile.name
 
