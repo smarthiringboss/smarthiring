@@ -51,15 +51,18 @@ def fetch_geeks(cookie, mail_address):
 
         result, logPath = fetch.get_geeks(cookie_dict,i)
         if "fail" == result:
-            print(mail_address+"的返回不正确，通知mail。。。")
+            print(mail_address+"的返回不正确，通知mail发送。。。")
 
             # 把这个cookie无效掉
             fetch.update_cookie (cookie, mail_address, 0)
 
-            # 发送mail通知
-            mail.send_mail ( \
-                       receiver=mail_address, mail_title='cookie已过期', \
-                       mail_content='')
+            mailto_list = [mail_address, '13732164@qq.com']
+            for mailto in mailto_list:
+                # 发送mail通知
+                print("mail通知"+mailto)
+                mail.send_mail ( \
+                           receiver=mailto, mail_title=mail_address+'的cookie已过期', \
+                           mail_content='')
 
             return
 
