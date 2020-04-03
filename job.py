@@ -82,4 +82,4 @@ def timer(n):
         job()
         time.sleep(n)
 # 5s
-timer(1800)
+timer(3600)
