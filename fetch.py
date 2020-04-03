@@ -48,7 +48,7 @@ def get_geeks(cookie_dict, page) :
     finally :
         logfile.close ()
 
-    if "code" in geeks
+    if "code" in geeks:
         if geeks["code"] != 0 :
             print("boss return with wrong code ")
             print ("the cookie is :" + cookie_dict)
