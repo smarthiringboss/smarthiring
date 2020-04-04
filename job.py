@@ -45,7 +45,7 @@ def query_valid_cookies():
 def fetch_geeks(cookie, mail_address):
 
     cookie_dict = fetch.convert_cookie(cookie)
-    for i in range(1,10):
+    for i in range(1,100):
         # 调节每页查询间隔
         time.sleep (30)
 
@@ -82,4 +82,4 @@ def timer(n):
         job()
         time.sleep(n)
 # 5s
-timer(3600)
+timer(43200)

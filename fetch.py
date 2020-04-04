@@ -96,35 +96,39 @@ def insert_geek(geekId, geekName, geekGender, geekWorkYear, geekDegree, geekDesc
 
 def extrat_geeks(geeks) :
     for geek in geeks :
-        geekId = geek [ "geekCard" ] [ "geekId" ]
-        geekName = geek [ "geekCard" ] [ "geekName" ]
-        geekGender = geek [ "geekCard" ] [ "geekGender" ]
-        geekWorkYear = geek [ "geekCard" ] [ "geekWorkYear" ]
-        geekDegree = geek [ "geekCard" ] [ "geekDegree" ]
-        geekDesc = geek [ "geekCard" ] [ "geekDesc" ] [ "content" ]
-        salary = geek [ "geekCard" ] [ "salary" ]
-        middleContent = geek [ "geekCard" ] [ "middleContent" ] [ "content" ]
-        actionDateDesc = geek [ "geekCard" ] [ "actionDateDesc" ]
-        actionDate = geek [ "geekCard" ] [ "actionDate" ]
-        school = geek [ "geekCard" ] [ "geekEdu" ] [ "school" ]
-        major = geek [ "geekCard" ] [ "geekEdu" ] [ "major" ]
-        degreeName = geek [ "geekCard" ] [ "geekEdu" ] [ "degreeName" ]
-        expectLocation = geek [ "geekCard" ] [ "expectLocation" ]
-        activeSec = geek [ "geekCard" ] [ "activeSec" ]
-        expectLocationName = geek [ "geekCard" ] [ "expectLocationName" ]
-        expectPositionName = geek [ "geekCard" ] [ "expectPositionName" ]
-        ageDesc = geek [ "geekCard" ] [ "ageDesc" ]
-        others = {
-            "company" : [ ],
-            "positionName" : [ ]
-        }
-        for geekWork in geek [ "geekCard" ] [ "geekWorks" ] :
-            others [ "company" ].append (geekWork [ "company" ])
-            others [ "positionName" ].append (geekWork [ "positionName" ])
+        try:
+            geekId = geek [ "geekCard" ] [ "geekId" ]
+            geekName = geek [ "geekCard" ] [ "geekName" ]
+            geekGender = geek [ "geekCard" ] [ "geekGender" ]
+            geekWorkYear = geek [ "geekCard" ] [ "geekWorkYear" ]
+            geekDegree = geek [ "geekCard" ] [ "geekDegree" ]
+            geekDesc = geek [ "geekCard" ] [ "geekDesc" ] [ "content" ]
+            salary = geek [ "geekCard" ] [ "salary" ]
+            middleContent = geek [ "geekCard" ] [ "middleContent" ] [ "content" ]
+            actionDateDesc = geek [ "geekCard" ] [ "actionDateDesc" ]
+            actionDate = geek [ "geekCard" ] [ "actionDate" ]
+            school = geek [ "geekCard" ] [ "geekEdu" ] [ "school" ]
+            major = geek [ "geekCard" ] [ "geekEdu" ] [ "major" ]
+            degreeName = geek [ "geekCard" ] [ "geekEdu" ] [ "degreeName" ]
+            expectLocation = geek [ "geekCard" ] [ "expectLocation" ]
+            activeSec = geek [ "geekCard" ] [ "activeSec" ]
+            expectLocationName = geek [ "geekCard" ] [ "expectLocationName" ]
+            expectPositionName = geek [ "geekCard" ] [ "expectPositionName" ]
+            ageDesc = geek [ "geekCard" ] [ "ageDesc" ]
+            others = {
+                "company" : [ ],
+                "positionName" : [ ]
+            }
+            for geekWork in geek [ "geekCard" ] [ "geekWorks" ] :
+                others [ "company" ].append (geekWork [ "company" ])
+                others [ "positionName" ].append (geekWork [ "positionName" ])
 
-        insert_geek (geekId, geekName, geekGender, geekWorkYear, geekDegree, geekDesc, salary, middleContent,
-                     actionDateDesc, actionDate, school, major, degreeName, expectLocation, activeSec,
-                     expectLocationName, expectPositionName, ageDesc, others [ "company" ], others [ "positionName" ])
+            insert_geek (geekId, geekName, geekGender, geekWorkYear, geekDegree, geekDesc, salary, middleContent,
+                         actionDateDesc, actionDate, school, major, degreeName, expectLocation, activeSec,
+                         expectLocationName, expectPositionName, ageDesc, others [ "company" ], others [ "positionName" ])
+        except Exception as e:
+            print("此条数据有问题：")
+            print(e)
 
 
 def query_if_cookie_exist(mail) :
