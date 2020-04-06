@@ -58,7 +58,7 @@ def get_geeks(cookie_dict, page) :
             print("boss return with Forbidden ")
             print("the cookie is :"+str(cookie_dict))
             return "fail", logfile.name
-    elif "geekList" not in geeks [ "zpData" ]:
+    if "geekList" not in geeks [ "zpData" ]:
         print ("no more geelists in return ")
         print ("the cookie is :" + str (cookie_dict))
         return "fail", logfile.name
